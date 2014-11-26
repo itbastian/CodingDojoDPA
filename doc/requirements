@@ -1,0 +1,26 @@
+Dubletten Prüfung
+	beliebig konfigurierbare Attributgruppen die miteinander verglichen werden sollen.
+		Eine Attributgruppe besteht aus 1-n Einzelattributen
+		Ein "Contact" besteht auch 1-n Attributgruppen
+	
+	einzelne Attribute können auf unterschiedliche Weise verglichen werden (konfigurativ)
+	
+	Ergebnis eines Attributvergleichs ist ein Wertebereich 0=ungleich - 100=bitgleich
+	
+	Ergebnis eines Attributgruppenvergleichs ist ein Wertebereich 0=ungleich - 100=bitgleich
+	
+	Ergebnis eines Attributgruppenvergleichs ist ein Wertebereich 0=ungleich - 100=bitgleich
+	 
+ 
+1.	Teilimplmentierung
+ 	
+Gegeben ist eine Liste mit Vornamen.
+Wenn diese Liste auf Dubletten geprüft wird 
+Dann werden doppelt vorkommende Vorname gekennzeichnet    
+ 	
+Attribute:
+	Vorname: String 100
+	Vergleich: bitgleich=100 sonst 0
+	
+	
+ 	
