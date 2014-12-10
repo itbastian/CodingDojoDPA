@@ -16,11 +16,9 @@ Dubletten Prüfung
  	
 Gegeben ist eine Liste mit Vornamen.
 Wenn diese Liste auf Dubletten geprüft wird 
-Dann werden doppelt vorkommende Vorname gekennzeichnet    
+Dann werden doppelt vorkommende Vornamen in einer neuen Liste zurückgegeben.    
  	
 Attribute:
 	Vorname: String 100
 	Vergleich: bitgleich=100 sonst 0
 	
-	
- 	
