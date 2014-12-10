@@ -6,16 +6,20 @@ public class Forename {
 
 	private final String value;
 
-	public Forename(String value) {
-		this.value = value;
+	public Forename(String forename) {
+		this.value = forename;
+	}
+
+	public String getForenameAsString() {
+		return value;
 	}
 
 	@Override
 	public String toString() {
-		return value;
+		return "Forename: " + value;
 	}
 
-	boolean isDuplicateOf(Forename objectToCompare) {
+	private boolean isDuplicateOf(Forename objectToCompare) {
 		return StringUtils.equals(value, objectToCompare.value);
 	}
 
