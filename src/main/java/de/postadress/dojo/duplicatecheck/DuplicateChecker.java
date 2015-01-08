@@ -1,18 +1,24 @@
 package de.postadress.dojo.duplicatecheck;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class DuplicateChecker {
 
-	public Similarity checkForDuplicate(Forename forename1, Forename forename2) {
-		Similarity similarityOfForenames = forename1.getSimilarityTo(forename2);
-		return similarityOfForenames;
+	private final SimilarityFunctionI function;
+
+	public DuplicateChecker(SimilarityFunctionI function) {
+		this.function = function;
 	}
 
-	public static List<Forename> findDuplicates(List<Forename> forenameList) {
+	public boolean isDuplicate(Forename forename1, Forename forename2,
+			Similarity minimumSimilarity) {
+		Similarity similarityOfForenames = function.calculateSimilarity(
+				forename1, forename2);
+		return similarityOfForenames.compareTo(minimumSimilarity) >= 0;
+	}
+
+	public List<Forename> findDuplicates(List<Forename> forenameList) {
 		// TODO Auto-generated method stub
 		List<Forename> resultForenames = new ArrayList<Forename>();
 		for (int i = 0; i < forenameList.size(); i++) {
@@ -21,20 +27,6 @@ public class DuplicateChecker {
 						.equals(Similarity.FULL_SIMILARITY)) {
 					resultForenames.add(forenameList.get(i));
 				}
-			}
-		}
-		return resultForenames;
-	}
-
-	public static List<Forename> findDuplicatesAlternate(
-			List<Forename> forenameList) {
-		List<Forename> resultForenames = new ArrayList<Forename>();
-		Set<Forename> uniqueNames = new HashSet<Forename>();
-		// resultForenames = forenameList.stream().filter(element ->
-		// !uniqueNames.add(element));
-		for (Forename forename : forenameList) {
-			if (!uniqueNames.add(forename)) {
-				resultForenames.add(forename);
 			}
 		}
 		return resultForenames;

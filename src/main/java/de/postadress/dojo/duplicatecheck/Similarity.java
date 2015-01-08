@@ -1,6 +1,6 @@
 package de.postadress.dojo.duplicatecheck;
 
-public class Similarity {
+public class Similarity implements Comparable<Similarity> {
 	public static final Similarity FULL_SIMILARITY = new Similarity(100);
 	public static final Similarity ZERO_SIMILARITY = new Similarity(0);
 
@@ -12,6 +12,12 @@ public class Similarity {
 
 	public int getSimilarityValue() {
 		return similarityValue;
+	}
+
+	@Override
+	public int compareTo(Similarity o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
