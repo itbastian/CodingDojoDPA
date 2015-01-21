@@ -29,4 +29,13 @@ public class StringCalculatorTest {
 		int result = calculator.add("");
 		assertEquals(0, result);
 	}
+
+	@Test
+	public void should_build_sum_of_multiple_numbers() throws Exception {
+		int resultThreeNumbers = calculator.add("1,2,3");
+		int resultFourNumbers = calculator.add("1,2,3,4");
+
+		assertEquals(6, resultThreeNumbers);
+		assertEquals(10, resultFourNumbers);
+	}
 }
