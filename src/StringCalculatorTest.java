@@ -38,4 +38,22 @@ public class StringCalculatorTest {
 		assertEquals(6, resultThreeNumbers);
 		assertEquals(10, resultFourNumbers);
 	}
+
+	@Test
+	public void should_cope_with_multiple_delimiters() throws Exception {
+		int resultThreeNumbers = calculator.add("1\n2,3");
+
+		assertEquals(6, resultThreeNumbers);
+	}
+
+	@Test
+	public void should_cope_with_multiple_chosen_delimiters() throws Exception {
+		int resultThreeNumbers = calculator.add("//\n\n1\n4");
+		assertEquals(5, resultThreeNumbers);
+
+		int resultThreeNumbersOtherDelimiter = calculator.add("//:\n1:4");
+		assertEquals(5, resultThreeNumbersOtherDelimiter);
+
+	}
+
 }
