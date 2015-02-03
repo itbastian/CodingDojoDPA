@@ -16,11 +16,18 @@ Dubletten Prüfung
  	
 Gegeben ist eine Liste mit Vornamen.
 Wenn diese Liste auf Dubletten geprüft wird 
-Dann werden doppelt vorkommende Vorname gekennzeichnet    
+Dann werden mehrfach vorkommende Vornamen in einer neuen Liste zurückgegeben.    
  	
 Attribute:
 	Vorname: String 100
 	Vergleich: bitgleich=100 sonst 0
+
+2. Teilimplementierung
+
+- Einführen einer austauschbaren Ähnlichkeitsfunktion
+- Die Ähnlichkeitsfunktion erhält zwei Vornamen und gibt einen Ähnlichkeitswert zwischen 0 und 100 zurück
+- Duplikatsprüfung erhält eine Liste von Vornamen 
+und eine Mindestähnlichkeit zwischen 0 und 100 als Eingabe 
+und gibt eine Liste von Vornamen zurück die bezüglich der angegebenen Mindestähnlichkeit ähnlich sind.
+
 	
-	
- 	
