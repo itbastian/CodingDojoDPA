@@ -7,6 +7,8 @@ public class StringCalculator {
 	private static final String DELIMITER_SPLITTER = "\n";
 
 	public int add(String inputText) throws Exception {
+		InputText input = new InputText(inputText);
+				
 		int sum = 0;
 
 		if (inputText.isEmpty()) {
@@ -42,17 +44,29 @@ public class StringCalculator {
 		return;
 	}
 
-	private int[] parseNumbers(String numbers) {
+	private int add(InputText input) {
+		int[] numbers= input.getLisdtOfNumbers();
+		
+	}
+	
+	private int[] parseNumbers(String inputText) {
+		String lineWithDelimiter = extractDelimiter(inputText);
+		String delimiter = parseDelimiter(inputText);
+	    String textNumbers = extractNumbers(inputText);
+	    
+		
 		String stringDelimiter = "[,\n]";
-		if (numbers.startsWith(DELIMITER_PREFIX)) {
-			char delimiter = numbers.charAt(DELIMITER_PREFIX.length());
-			numbers = numbers.substring(DELIMITER_PREFIX.length()
+		if (inputText.startsWith(DELIMITER_PREFIX)) {
+			char delimiter = inputText.charAt(DELIMITER_PREFIX.length());
+			inputText = inputText.substring(DELIMITER_PREFIX.length()
 					+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
 			stringDelimiter = delimiter + "";
 		}
-		int[] numbersAsInts = convertTextToNumbers(numbers, stringDelimiter);
+		int[] numbersAsInts = convertTextToNumbers(inputText, stringDelimiter);
 		return numbersAsInts;
 	}
+	
+	public S
 
 	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
 		String[] split = numbers.split(stringDelimiter);
