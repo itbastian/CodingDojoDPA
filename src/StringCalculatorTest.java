@@ -56,4 +56,23 @@ public class StringCalculatorTest {
 
 	}
 
+	@Test(expected = Exception.class)
+	public void should_throw_exception_when_negative_number_included()
+			throws Exception {
+		String input = "//:\n1:8:-3";
+		int result = calculator.add(input);
+	}
+
+	@Test
+	public void should_throw_exception_when_negative_number_included2() {
+		String input = "//:\n1:8:-3";
+		try {
+			int result = calculator.add(input);
+			fail();
+		} catch (Exception e) {
+			assertEquals(e.getMessage(),
+					"Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3");
+		}
+	}
+
 }
