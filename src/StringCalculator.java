@@ -6,17 +6,17 @@ public class StringCalculator {
 	private static final int DELIMITER_LENGTH = 1;
 	private static final String DELIMITER_SPLITTER = "\n";
 
-	public int add(String numbers) throws Exception {
+	public int add(String inputText) throws Exception {
 		int sum = 0;
 
-		if (numbers.isEmpty()) {
+		if (inputText.isEmpty()) {
 			return sum;
 		}
 
-		int[] numbersAsInts = parseNumbers(numbers);
-		checkForNegativeNumbers(numbersAsInts);
+		int[] numbers = parseNumbers(inputText);
+		checkForNegativeNumbers(numbers);
 
-		for (int element : numbersAsInts) {
+		for (int element : numbers) {
 
 			sum += element;
 		}
@@ -50,17 +50,18 @@ public class StringCalculator {
 					+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
 			stringDelimiter = delimiter + "";
 		}
-		int[] numbersAsInts = convertStringArrayToIntArray(numbers
-				.split(stringDelimiter));
+		int[] numbersAsInts = convertTextToNumbers(numbers, stringDelimiter);
 		return numbersAsInts;
 	}
 
-	private int[] convertStringArrayToIntArray(String[] numbers) {
-		int[] numberAsInts = new int[numbers.length];
-		for (int i = 0; i < numbers.length; i++) {
-			numberAsInts[i] = Integer.parseInt(numbers[i]);
+	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
+		String[] split = numbers.split(stringDelimiter);
+		int[] numberAsInts = new int[split.length];
+		for (int i = 0; i < split.length; i++) {
+			numberAsInts[i] = Integer.parseInt(split[i]);
 		}
-		return numberAsInts;
+		int[] numbersAsInts = numberAsInts;
+		return numbersAsInts;
 	}
 
 }
