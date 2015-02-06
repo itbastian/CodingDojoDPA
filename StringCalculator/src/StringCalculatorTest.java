@@ -48,20 +48,23 @@ public class StringCalculatorTest {
         assertEquals( 10, resultFourNumbers );
     }
 
-    @Test( expected = Exception.class )
+    @Test
     public void should_throw_exception_when_negative_number_included()
         throws Exception {
-        String input = "1,8,-3";
+        String input = "1,-3,8";
+
+        expectedException.expect( Exception.class );
+        expectedException.expectMessage( "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3" );
         calculator.add( input );
     }
 
     @Test
-    public void should_throw_exception_when_negative_number_included2()
+    public void should_throw_exception_when_multiple_negative_numbers_included()
         throws Exception {
-        String input = "1,8,-3";
+        String input = "1,-3,8,-6";
 
         expectedException.expect( Exception.class );
-        expectedException.expectMessage( "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3" );
+        expectedException.expectMessage( "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3,-6" );
         calculator.add( input );
     }
 }

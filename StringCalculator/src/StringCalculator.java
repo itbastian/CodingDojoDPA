@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class StringCalculator {
 
     private InputTextParser parser;
@@ -30,18 +34,31 @@ public class StringCalculator {
 
     private void checkForNegativeNumbers( Integer[] numbers )
         throws Exception {
-        StringBuilder negativeNumbers = new StringBuilder();
+        List<Integer> negativeNumbers = new ArrayList<Integer>();
         for ( int element : numbers ) {
             if ( element < 0 ) {
-                negativeNumbers.append( element );
+                negativeNumbers.add( element );
             }
         }
 
-        if ( negativeNumbers.length() > 0 ) {
+        if ( !negativeNumbers.isEmpty() ) {
             throw new Exception(
                 "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: "
-                    + negativeNumbers );
+                    + join( negativeNumbers ) );
         }
+    }
+
+    private String join( List<Integer> negativeNumbers ) {
+        String joinedInts = "";
+        Iterator<Integer> iterator = negativeNumbers.iterator();
+        while ( iterator.hasNext() ) {
+            joinedInts += iterator.next();
+            if ( iterator.hasNext() ) {
+                joinedInts += ",";
+            }
+        }
+
+        return joinedInts;
     }
 
 }
