@@ -1,81 +1,51 @@
-import com.sun.xml.internal.ws.util.StringUtils;
-
 public class StringCalculator {
 
-	private static final String DELIMITER_PREFIX = "//";
-	private static final int DELIMITER_LENGTH = 1;
-	private static final String DELIMITER_SPLITTER = "\n";
+    private InputTextParser parser;
 
-	public int add(String inputText) throws Exception {
-		InputText input = new InputText(inputText);
-				
-		int sum = 0;
+    public StringCalculator() {
+        parser = new InputTextParser();
+    }
 
-		if (inputText.isEmpty()) {
-			return sum;
-		}
+    StringCalculator( InputTextParser parser ) {
+        this.parser = parser;
+    }
 
-		int[] numbers = parseNumbers(inputText);
-		checkForNegativeNumbers(numbers);
+    public int add( String inputText )
+        throws Exception {
+        int sum = 0;
 
-		for (int element : numbers) {
+        if ( inputText.isEmpty() ) {
+            return sum;
+        }
 
-			sum += element;
-		}
-		return sum;
-	}
+        Integer[] numbers = parser.parseNumbers( inputText );
+        checkForNegativeNumbers( numbers );
 
-	private void checkForNegativeNumbers(int[] numbers) throws Exception {
-		String negativeNumbers = null;
-		for (int element : numbers) {
-			if (element < 0) {
-				if (negativeNumbers == null) {
-					negativeNumbers = Integer.toString(element);
-					continue;
-				}
-				negativeNumbers += "," + element;
-			}
-		}
-		if (negativeNumbers != null) {
-			throw new Exception(
-					"Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: "
-							+ negativeNumbers);
-		}
-		return;
-	}
+        for ( int element : numbers ) {
 
-	private int add(InputText input) {
-		int[] numbers= input.getLisdtOfNumbers();
-		
-	}
-	
-	private int[] parseNumbers(String inputText) {
-		String lineWithDelimiter = extractDelimiter(inputText);
-		String delimiter = parseDelimiter(inputText);
-	    String textNumbers = extractNumbers(inputText);
-	    
-		
-		String stringDelimiter = "[,\n]";
-		if (inputText.startsWith(DELIMITER_PREFIX)) {
-			char delimiter = inputText.charAt(DELIMITER_PREFIX.length());
-			inputText = inputText.substring(DELIMITER_PREFIX.length()
-					+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
-			stringDelimiter = delimiter + "";
-		}
-		int[] numbersAsInts = convertTextToNumbers(inputText, stringDelimiter);
-		return numbersAsInts;
-	}
-	
-	public S
+            sum += element;
+        }
+        return sum;
+    }
 
-	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
-		String[] split = numbers.split(stringDelimiter);
-		int[] numberAsInts = new int[split.length];
-		for (int i = 0; i < split.length; i++) {
-			numberAsInts[i] = Integer.parseInt(split[i]);
-		}
-		int[] numbersAsInts = numberAsInts;
-		return numbersAsInts;
-	}
+    private void checkForNegativeNumbers( Integer[] numbers )
+        throws Exception {
+        String negativeNumbers = null;
+        for ( int element : numbers ) {
+            if ( element < 0 ) {
+                if ( negativeNumbers == null ) {
+                    negativeNumbers = Integer.toString( element );
+                    continue;
+                }
+                negativeNumbers += "," + element;
+            }
+        }
+        if ( negativeNumbers != null ) {
+            throw new Exception(
+                "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: "
+                    + negativeNumbers );
+        }
+        return;
+    }
 
 }
