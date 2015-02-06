@@ -1,10 +1,14 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class StringCalculatorTest {
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     private StringCalculator calculator;
 
@@ -47,20 +51,17 @@ public class StringCalculatorTest {
     @Test( expected = Exception.class )
     public void should_throw_exception_when_negative_number_included()
         throws Exception {
-        String input = "//:\n1:8:-3";
-        int result = calculator.add( input );
+        String input = "1,8,-3";
+        calculator.add( input );
     }
 
     @Test
-    public void should_throw_exception_when_negative_number_included2() {
-        String input = "//:\n1:8:-3";
-        try {
-            int result = calculator.add( input );
-            fail();
-        }
-        catch ( Exception e ) {
-            assertEquals( e.getMessage(),
-                "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3" );
-        }
+    public void should_throw_exception_when_negative_number_included2()
+        throws Exception {
+        String input = "1,8,-3";
+
+        expectedException.expect( Exception.class );
+        expectedException.expectMessage( "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: -3" );
+        calculator.add( input );
     }
 }
