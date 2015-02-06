@@ -30,22 +30,18 @@ public class StringCalculator {
 
     private void checkForNegativeNumbers( Integer[] numbers )
         throws Exception {
-        String negativeNumbers = null;
+        StringBuilder negativeNumbers = new StringBuilder();
         for ( int element : numbers ) {
             if ( element < 0 ) {
-                if ( negativeNumbers == null ) {
-                    negativeNumbers = Integer.toString( element );
-                    continue;
-                }
-                negativeNumbers += "," + element;
+                negativeNumbers.append( element );
             }
         }
-        if ( negativeNumbers != null ) {
+
+        if ( negativeNumbers.length() > 0 ) {
             throw new Exception(
                 "Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: "
                     + negativeNumbers );
         }
-        return;
     }
 
 }
