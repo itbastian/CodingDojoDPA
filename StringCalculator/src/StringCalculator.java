@@ -14,7 +14,7 @@ public class StringCalculator {
 
 		int[] arguments = input.getCalculatorArguments();
 
-		checkForNegativeNumbers(arguments);
+		abortIfNegativeNumbersAreContained(arguments);
 
 		int sum = 0;
 		for (int argument : arguments) {
@@ -23,7 +23,7 @@ public class StringCalculator {
 		return sum;
 	}
 
-	private void checkForNegativeNumbers(int[] numbers) {
+	private void abortIfNegativeNumbersAreContained(int[] numbers) {
 		List<Integer> negativeNumbers = new ArrayList<Integer>();
 		for (int element : numbers) {
 			if (element < 0) {
