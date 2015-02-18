@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 
 public class StringCalculator {
 
@@ -20,23 +24,33 @@ public class StringCalculator {
 	}
 
 	private void checkForNegativeNumbers(int[] numbers) {
-		String negativeNumbers = null;
+		List<Integer> negativeNumbers = new ArrayList<Integer>();
 		for (int element : numbers) {
-			
 			if (element < 0) {
-				if (negativeNumbers == null) {
-					negativeNumbers = Integer.toString(element);
-					continue;
-				}
-				negativeNumbers += "," + element;
+				negativeNumbers.add(element);
 			}
 		}
-		if (negativeNumbers != null) {
+		
+		if (!negativeNumbers.isEmpty()) {
 			throw new IllegalArgumentException(
 					"Negative Zahlen sind nicht erlaubt. Folgende wurden gefunden: "
-							+ negativeNumbers);
+							+ join(negativeNumbers));
 		}
 		return;
+	}
+
+	private String join(List<Integer> negativeNumbers) {
+		Iterator<Integer> iterator = negativeNumbers.iterator();
+		StringBuilder str = new StringBuilder();
+		
+		while(iterator.hasNext()) {
+			str.append(iterator.next());
+			if(iterator.hasNext()) {
+				str.append(",");
+			}
+		}
+		
+		return str.toString();
 	}
 	
 }

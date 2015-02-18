@@ -21,13 +21,21 @@ public class CalculatorInput {
 		}
 		String stringDelimiter = "[,\n]";
 		if (inputText.startsWith(DELIMITER_PREFIX)) {
-			char delimiter = inputText.charAt(DELIMITER_PREFIX.length());
-			inputText = inputText.substring(DELIMITER_PREFIX.length()
-					+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
+			char delimiter = extractDelimiter(inputText);
+			inputText = extractNumbersPart(inputText);
 			stringDelimiter = delimiter + "";
 		}
 		int[] numbersAsInts = convertTextToNumbers(inputText, stringDelimiter);
 		return numbersAsInts;
+	}
+
+	private String extractNumbersPart(String inputText) {
+		return inputText.substring(DELIMITER_PREFIX.length()
+				+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
+	}
+
+	private char extractDelimiter(String inputText) {
+		return inputText.charAt(DELIMITER_PREFIX.length());
 	}
 	
 	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
