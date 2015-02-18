@@ -1,12 +1,9 @@
 public class CalculatorInput {
 
-//	private static final char DEFAULT_DELIMITER = ',';
 	private static final String DELIMITER_PREFIX = "//";
 	private static final int DELIMITER_LENGTH = 1;
 	private static final String DELIMITER_SPLITTER = "\n";
-	
-	
-//	private char delimiter = ','; 
+
 	
 	private int[] parsedNumbers = null;
 	
@@ -19,12 +16,9 @@ public class CalculatorInput {
 	}
 	
 	private int[] parseNumbers(String inputText) {
-		// apply single level of abstraction:
-//		String lineWithDelimiter = extractDelimiter(inputText);
-//		String delimiter = parseDelimiter(inputText);
-//	    String textNumbers = extractNumbers(inputText);
-	    
-		
+		if (inputText.isEmpty()){
+			return new int[]{0};
+		}
 		String stringDelimiter = "[,\n]";
 		if (inputText.startsWith(DELIMITER_PREFIX)) {
 			char delimiter = inputText.charAt(DELIMITER_PREFIX.length());
@@ -38,11 +32,10 @@ public class CalculatorInput {
 	
 	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
 		String[] split = numbers.split(stringDelimiter);
-		int[] numberAsInts = new int[split.length];
+		int[] numbersAsInts = new int[split.length];
 		for (int i = 0; i < split.length; i++) {
-			numberAsInts[i] = Integer.parseInt(split[i]);
+			numbersAsInts[i] = Integer.parseInt(split[i]);
 		}
-		int[] numbersAsInts = numberAsInts;
 		return numbersAsInts;
 	}
 }

@@ -7,19 +7,14 @@ public class StringCalculator {
 	}
 	
 	private int add(CalculatorInput input) {
-		int sum = 0;
 
 		int[] arguments = input.getCalculatorArguments();
-		if (arguments == null || arguments.length == 0)
-		{
-			return sum;
-		}
 
 		checkForNegativeNumbers(arguments);
 
-		for (int element : arguments) {
-
-			sum += element;
+		int sum = 0;
+		for (int argument : arguments) {
+			sum += argument;
 		}
 		return sum;
 	}
@@ -27,6 +22,7 @@ public class StringCalculator {
 	private void checkForNegativeNumbers(int[] numbers) {
 		String negativeNumbers = null;
 		for (int element : numbers) {
+			
 			if (element < 0) {
 				if (negativeNumbers == null) {
 					negativeNumbers = Integer.toString(element);
