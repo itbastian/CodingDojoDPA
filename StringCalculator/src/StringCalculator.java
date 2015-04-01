@@ -1,10 +1,15 @@
 public class StringCalculator {
 	
 	enum Operation {
-		ADD;
+		ADD,
+		MULTIPLY;
 	}
 
 	public int add(String inputText) {
+		return calculate(inputText);
+	}
+	
+	public int calculate(String inputText) {
 		CalculatorInput arguments = new CalculatorInput(inputText);
 		return calculate(arguments);
 	}

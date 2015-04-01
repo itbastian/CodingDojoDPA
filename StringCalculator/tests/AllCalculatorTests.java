@@ -38,6 +38,32 @@ public class AllCalculatorTests {
 		assertEquals(6, resultThreeNumbers);
 		assertEquals(10, resultFourNumbers);
 	}
+	
+	@Test
+	public void add_with_explicit_operator() throws Exception {
+		int result = calculator.calculate("+\n1,2,3");
+
+		assertEquals(6, result);
+	}
+	
+	@Test
+	public void multiply_with_explicit_operator() throws Exception {
+		int result = calculator.calculate("*\n5,2,3");
+
+		assertEquals(30, result);
+	}
+	
+	@Test
+	public void parse_operator() {
+		CalculatorInput input = new CalculatorInput("*\n5,3");
+
+		assertEquals(StringCalculator.Operation.MULTIPLY, input.getOperation());
+		
+		
+		input = new CalculatorInput("+\n5,3");
+
+		assertEquals(StringCalculator.Operation.ADD, input.getOperation());
+	}
 
 	@Test
 	public void cope_with_multiple_delimiters() throws Exception {
