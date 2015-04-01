@@ -1,3 +1,4 @@
+
 public class CalculatorInput {
 
 	private static final String DELIMITER_PREFIX = "//";
@@ -13,6 +14,10 @@ public class CalculatorInput {
 	
 	public int[] getCalculatorArguments() {
 		return parsedNumbers;
+	}
+	
+	public StringCalculator.Operation getOperation() {
+		return StringCalculator.Operation.ADD;
 	}
 	
 	private int[] parseNumbers(final String inputText) {

@@ -1,6 +1,6 @@
 public class StringCalculator {
 	
-	private enum Operation {
+	enum Operation {
 		ADD;
 	}
 
