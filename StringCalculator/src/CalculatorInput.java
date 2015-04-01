@@ -5,28 +5,31 @@ public class CalculatorInput {
 	private static final String DELIMITER_SPLITTER = "\n";
 
 	
-	private int[] parsedNumbers = null;
+	private int[] parsedNumbers;
 	
 	public CalculatorInput(String textToParse) {
 		parsedNumbers = parseNumbers(textToParse);
 	}
 	
 	public int[] getCalculatorArguments() {
-		return this.parsedNumbers;
+		return parsedNumbers;
 	}
 	
-	private int[] parseNumbers(String inputText) {
+	private int[] parseNumbers(final String inputText) {
 		if (inputText.isEmpty()){
 			return new int[]{0};
 		}
-		String stringDelimiter = "[,\n]";
+		final String delimiter;
+		final String numbersAsString;
 		if (inputText.startsWith(DELIMITER_PREFIX)) {
-			char delimiter = extractDelimiter(inputText);
-			inputText = extractNumbersPart(inputText);
-			stringDelimiter = delimiter + "";
+			delimiter = extractDelimiter(inputText);
+			numbersAsString = extractNumbersPart(inputText);
+		} else {
+			delimiter = "[,\n]";
+			numbersAsString = inputText;
 		}
-		int[] numbersAsInts = convertTextToNumbers(inputText, stringDelimiter);
-		return numbersAsInts;
+		int[] numbers = convertTextToNumbers(numbersAsString, delimiter);
+		return numbers;
 	}
 
 	private String extractNumbersPart(String inputText) {
@@ -34,15 +37,15 @@ public class CalculatorInput {
 				+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
 	}
 
-	private char extractDelimiter(String inputText) {
-		return inputText.charAt(DELIMITER_PREFIX.length());
+	private String extractDelimiter(String inputText) {
+		return inputText.charAt(DELIMITER_PREFIX.length()) + "";
 	}
 	
 	private int[] convertTextToNumbers(String numbers, String stringDelimiter) {
-		String[] split = numbers.split(stringDelimiter);
-		int[] numbersAsInts = new int[split.length];
-		for (int i = 0; i < split.length; i++) {
-			numbersAsInts[i] = Integer.parseInt(split[i]);
+		String[] splittedNumbers = numbers.split(stringDelimiter);
+		int[] numbersAsInts = new int[splittedNumbers.length];
+		for (int i = 0; i < splittedNumbers.length; i++) {
+			numbersAsInts[i] = Integer.parseInt(splittedNumbers[i]);
 		}
 		return numbersAsInts;
 	}
