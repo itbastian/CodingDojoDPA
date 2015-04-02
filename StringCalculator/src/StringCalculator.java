@@ -13,25 +13,29 @@ public class StringCalculator {
 		int[] arguments = input.getCalculatorArguments();
 		Operation operation = input.getOperation();
 		
+		if (arguments.length == 0) {
+			return 0;
+		}
+		
 		final InputValidator validator = new InputValidator();
 		validator.abortIfNegativeNumbersAreContained(arguments);
 
-		int sum = 0;
-		for (int argument : arguments) {
+		int intermediateResult = arguments[0];
+		for (int i = 1; i< arguments.length; i++) {
 			switch (operation) {
 			case ADD:
-				sum += argument;
+				intermediateResult += arguments[i];
 				break;
 				
 			case MULTIPLY:
-				sum *= argument;
+				intermediateResult *= arguments[i];
 				break;
 
 			default:
 				break;
 			}
 		}
-		return sum;
+		return intermediateResult;
 	}
 	
 }
