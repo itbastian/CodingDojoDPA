@@ -47,7 +47,7 @@ public class AllCalculatorTests {
 	}
 	
 	@Test
-	public void multiply_with_explicit_operator() throws Exception {
+	public void multiply_with_explicit_operator() {
 		int result = calculator.calculate("*\n5,2,3");
 
 		assertEquals(30, result);
@@ -57,12 +57,12 @@ public class AllCalculatorTests {
 	public void parse_operator() {
 		CalculatorInput input = new CalculatorInput("*\n5,3");
 
-		assertEquals(StringCalculator.Operation.MULTIPLY, input.getOperation());
+		assertEquals(Operation.MULTIPLY, input.getOperation());
 		
 		
 		input = new CalculatorInput("+\n5,3");
 
-		assertEquals(StringCalculator.Operation.ADD, input.getOperation());
+		assertEquals(Operation.ADD, input.getOperation());
 	}
 
 	@Test

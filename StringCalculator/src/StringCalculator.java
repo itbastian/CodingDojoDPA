@@ -1,10 +1,5 @@
 public class StringCalculator {
 	
-	enum Operation {
-		ADD,
-		MULTIPLY;
-	}
-
 	public int add(String inputText) {
 		return calculate(inputText);
 	}
@@ -14,13 +9,9 @@ public class StringCalculator {
 		return calculate(arguments);
 	}
 	
-	private int add(int value1, int value2) {
-		return value1 + value2;
-	}
-
 	private int calculate(CalculatorInput input) {
 		int[] arguments = input.getCalculatorArguments();
-		Operation operation = Operation.ADD;
+		Operation operation = input.getOperation();
 		
 		final InputValidator validator = new InputValidator();
 		validator.abortIfNegativeNumbersAreContained(arguments);
@@ -29,7 +20,11 @@ public class StringCalculator {
 		for (int argument : arguments) {
 			switch (operation) {
 			case ADD:
-				sum = add(sum, argument);
+				sum += argument;
+				break;
+				
+			case MULTIPLY:
+				sum *= argument;
 				break;
 
 			default:

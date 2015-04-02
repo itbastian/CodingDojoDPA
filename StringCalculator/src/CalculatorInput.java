@@ -10,7 +10,7 @@ public class CalculatorInput {
 	private static final String OPERATOR_MULTIPLY = "*";
 	
 	private int[] parsedNumbers;
-	private StringCalculator.Operation operator;
+	private Operation operator;
 	
 	public CalculatorInput(String textToParse) {
 		parsedNumbers = parseInput(textToParse);
@@ -20,7 +20,7 @@ public class CalculatorInput {
 		return parsedNumbers;
 	}
 	
-	public StringCalculator.Operation getOperation() {
+	public Operation getOperation() {
 		return this.operator;
 	}
 	
@@ -39,7 +39,6 @@ public class CalculatorInput {
 			remainingString = inputText;
 		}
 		
-		
 		this.operator = parseOperator(remainingString);
 		String numbersString = extractRemainingInputWithoutOperator(remainingString);
 		
@@ -47,13 +46,13 @@ public class CalculatorInput {
 		return numbers;
 	}
 	
-	private StringCalculator.Operation parseOperator(String inputTextWithoutDelimiterLine) {
+	private Operation parseOperator(String inputTextWithoutDelimiterLine) {
 		if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_ADD)) {
-			return StringCalculator.Operation.ADD;
+			return Operation.ADD;
 		} else if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_MULTIPLY)) { 
-			return StringCalculator.Operation.MULTIPLY;
+			return Operation.MULTIPLY;
 		} else {
-			return StringCalculator.Operation.ADD;
+			return Operation.ADD;
 		}
 	}
 
