@@ -26,6 +26,9 @@ public class Anschrift implements Observable {
 		this.plz = plz;
 		this.ort = ort;
 	}
+	
+	public Anschrift() {
+	}
 
 	public String getStrasse() {
 		return strasse;

@@ -25,6 +25,9 @@ public class Person implements Observable {
 		this.nachname = nachname;
 	}
 	
+	public Person() {
+	}
+	
 	public String getVorname() {
 		return vorname;
 	}
