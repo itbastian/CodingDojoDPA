@@ -38,16 +38,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="de.dpa.codingdojo.domain.DomainPackage.Literals" project="ObserverEMFExample" 
-    file="/ObserverEMFExample/src-gen/de/dpa/codingdojo/domain/DomainPackage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="438" y="824"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="6" language="java" name="de.dpa.codingdojo.domain.impl.AnschriftImpl" project="ObserverEMFExample" 
+  <class id="5" language="java" name="de.dpa.codingdojo.domain.impl.AnschriftImpl" project="ObserverEMFExample" 
     file="/ObserverEMFExample/src-gen/de/dpa/codingdojo/domain/impl/AnschriftImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="343" y="521"/>    
@@ -57,7 +48,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="de.dpa.codingdojo.domain.impl.PersonImpl" project="ObserverEMFExample" 
+  <class id="6" language="java" name="de.dpa.codingdojo.domain.impl.PersonImpl" project="ObserverEMFExample" 
     file="/ObserverEMFExample/src-gen/de/dpa/codingdojo/domain/impl/PersonImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="113" y="522"/>    
@@ -67,21 +58,25 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="9" name="anschrift"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+  <association id="7">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="8" name="anschrift">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="9" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="11">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <realization id="12">    
-    <end type="SOURCE" refId="6"/>    
+  <realization id="10">    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="11">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
