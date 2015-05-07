@@ -1,38 +1,74 @@
+
+
 public class CalculatorInput {
 
 	private static final String DELIMITER_PREFIX = "//";
 	private static final int DELIMITER_LENGTH = 1;
 	private static final String DELIMITER_SPLITTER = "\n";
 
+	private static final String OPERATOR_ADD = "+";
+	private static final String OPERATOR_MULTIPLY = "*";
 	
 	private int[] parsedNumbers;
+	private Operation operator;
 	
 	public CalculatorInput(String textToParse) {
-		parsedNumbers = parseNumbers(textToParse);
+		parsedNumbers = parseInput(textToParse);
 	}
 	
 	public int[] getCalculatorArguments() {
 		return parsedNumbers;
 	}
 	
-	private int[] parseNumbers(final String inputText) {
+	public Operation getOperation() {
+		return this.operator;
+	}
+	
+	private int[] parseInput(final String inputText) {
 		if (inputText.isEmpty()){
 			return new int[]{0};
 		}
 		final String delimiter;
-		final String numbersAsString;
+		final String remainingString;
+		
 		if (inputText.startsWith(DELIMITER_PREFIX)) {
 			delimiter = extractDelimiter(inputText);
-			numbersAsString = extractNumbersPart(inputText);
+			remainingString = extractRemainingInputWithoutDelimiterLine(inputText);
 		} else {
 			delimiter = "[,\n]";
-			numbersAsString = inputText;
+			remainingString = inputText;
 		}
-		int[] numbers = convertTextToNumbers(numbersAsString, delimiter);
+		
+		this.operator = parseOperator(remainingString);
+		String numbersString = extractRemainingInputWithoutOperator(remainingString);
+		
+		int[] numbers = convertTextToNumbers(numbersString, delimiter);
 		return numbers;
 	}
+	
+	private Operation parseOperator(String inputTextWithoutDelimiterLine) {
+		if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_ADD)) {
+			return Operation.ADD;
+		} else if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_MULTIPLY)) { 
+			return Operation.MULTIPLY;
+		} else {
+			return Operation.ADD;
+		}
+	}
 
-	private String extractNumbersPart(String inputText) {
+	private String extractRemainingInputWithoutOperator(String inputTextWithoutDelimiterLine) {
+		int lengthOperatorDelimiter = 1;
+	
+		if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_ADD)) {
+			return inputTextWithoutDelimiterLine.substring(OPERATOR_ADD.length() + lengthOperatorDelimiter);
+		} else if (inputTextWithoutDelimiterLine.startsWith(OPERATOR_MULTIPLY)) { 
+			return inputTextWithoutDelimiterLine.substring(OPERATOR_MULTIPLY.length() + lengthOperatorDelimiter);
+		} else {
+			return inputTextWithoutDelimiterLine;
+		}
+	}
+	
+	private String extractRemainingInputWithoutDelimiterLine(String inputText) {
 		return inputText.substring(DELIMITER_PREFIX.length()
 				+ DELIMITER_LENGTH + DELIMITER_SPLITTER.length());
 	}
